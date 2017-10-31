@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Solver
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Solver\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=noOfQueens
+comment1.target=Solver(int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Solver\r\n
+comment2.params=noOfQuuens
+comment2.target=void\ findAllSolutions(int)
+comment3.params=
+comment3.target=void\ testLegal()
+comment4.params=row\ col
+comment4.target=boolean\ legal(int,\ int)
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+numComments=6
