@@ -40,8 +40,11 @@ public class Solver
        System.out.println();
        System.out.println();
        duration = System.currentTimeMillis();
-       System.out.println("Were found in " + System.currentTimeMillis() + "s");
+       System.out.println("Were found in " + System.currentTimeMillis() + "ms");
+       System.out.println("no of Solutions " + noOfSolutions);
+        noOfSolutions = 0;
        System.out.println("*****************************");
+
 
     }
 
@@ -58,20 +61,23 @@ public class Solver
 
 
     private void positionQueens(int row) {
+
         for (int i = 0; i < noOfQueens; i++) {
             if (legal(row, i)) {
                 queens[row] = i;
                 if (row + 1 < noOfQueens) {
                     positionQueens(row + 1);
-                    queens[row] = 99;
+                    //queens[row] = 99;
                 } else {
+                    noOfSolutions++;
                     printSolution();
-                    queens[row] = 99;
+                    //queens[row] = 99;
                 }
             } else {
-                queens[row] = 99;
+                //queens[row] = 99;
             }
         }
+
     }
 
     private boolean legal(int row, int col) {
@@ -84,9 +90,9 @@ public class Solver
     }
 
     public static void main(String[] args) {
-        Solver s1 = new Solver(14);
-       // s1.findAllSolutions(14);
-        s1.findNoOfSolutions(7,9);
+        Solver s1 = new Solver(9);
+        //s1.findAllSolutions(4);
+        s1.findNoOfSolutions(5,9);
     }
 
 
@@ -100,11 +106,16 @@ public class Solver
         }
     }
 
-    public void findNoOfSolutions(int min, int max){
+    public void findNoOfSolutions(int min, int max) {
+        for (int i = max; i <= noOfQueens; i--) {
+            if (i >= min) {
 
-       findAllSolutions(max-min);
+                findAllSolutions(i);
+
+            }
+        }
+
     }
-
     private String convert(int row, int col) {
         return String.valueOf((char)('a'+col))+(row+1);
 
