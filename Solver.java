@@ -19,7 +19,7 @@ public class Solver
     /**
      * Constructor for objects of class Solver
      */
-    public Solver(int noOfQueens)
+   /* public Solver(int noOfQueens)
     {
         this.noOfQueens = noOfQueens;
         this.queens = new int[noOfQueens];
@@ -27,11 +27,12 @@ public class Solver
         Arrays.fill(queens, 99);
         this.duration = duration;
 
-    }
+    }*/
 
    public void findAllSolutions(int noOfQueens){
-        /*System.out.format("   %3d  %,12d     %,8d     %,8d %n", noOfQueens, noOfSolutions,
-                duration, noOfSoultions/duration);*/
+       this.noOfQueens = noOfQueens;
+       this.queens = new int[noOfQueens];
+       Arrays.fill(queens,99);
        System.out.println("*****************************");
        System.out.println("Solutions for " + noOfQueens + " queens:");
 
@@ -42,11 +43,13 @@ public class Solver
        duration = System.currentTimeMillis();
        System.out.println("Were found in " + System.currentTimeMillis() + "ms");
        System.out.println("no of Solutions " + noOfSolutions);
-        noOfSolutions = 0;
+
+
        System.out.println("*****************************");
+       /*System.out.format("   %3d  %,12d     %,8d     %,8d %n", noOfQueens, noOfSolutions,
+               duration, noOfSolutions/duration);*/
 
-
-    }
+   }
 
     public void testLegal() {
         queens = new int[]{4, 6, 3, 0, 0, 0, 0, 0};
@@ -67,14 +70,14 @@ public class Solver
                 queens[row] = i;
                 if (row + 1 < noOfQueens) {
                     positionQueens(row + 1);
-                    //queens[row] = 99;
+                    queens[row] = 99;
                 } else {
                     noOfSolutions++;
                     printSolution();
-                    //queens[row] = 99;
+                    queens[row] = 99;
                 }
             } else {
-                //queens[row] = 99;
+                queens[row] = 99;
             }
         }
 
@@ -90,8 +93,8 @@ public class Solver
     }
 
     public static void main(String[] args) {
-        Solver s1 = new Solver(9);
-        //s1.findAllSolutions(4);
+        Solver s1 = new Solver();
+       // s1.findAllSolutions(6);
         s1.findNoOfSolutions(5,9);
     }
 
@@ -99,23 +102,22 @@ public class Solver
 
     private void printSolution() {
 
-       System.out.println();
+        System.out.println();
         for(int i = 0; i< queens.length; i++){
-                System.out.print(convert(i, queens[i]) + " ");
+            System.out.print(convert(i, queens[i]) + " ");
 
         }
     }
 
     public void findNoOfSolutions(int min, int max) {
-        for (int i = max; i <= noOfQueens; i--) {
-            if (i >= min) {
+        for (int i = min; i <= max; i++) {
+            noOfSolutions = 0;
+            findAllSolutions(i);
 
-                findAllSolutions(i);
-
-            }
         }
-
     }
+
+
     private String convert(int row, int col) {
         return String.valueOf((char)('a'+col))+(row+1);
 
