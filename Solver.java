@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.util.*;
 import java.lang.*;
 
@@ -14,40 +15,43 @@ public class Solver
     private int[] queens;
     private int noOfSolutions;
     private boolean showSolutions; // styrer om løsningerne udskrives på terminalen
-    private long duration;
 
-    /**
-     * Constructor for objects of class Solver
-     */
-   /* public Solver(int noOfQueens)
-    {
-        this.noOfQueens = noOfQueens;
-        this.queens = new int[noOfQueens];
-        this.noOfSolutions = noOfSolutions;
-        Arrays.fill(queens, 99);
-        this.duration = duration;
 
-    }*/
+
 
    public void findAllSolutions(int noOfQueens){
        this.noOfQueens = noOfQueens;
        this.queens = new int[noOfQueens];
-       Arrays.fill(queens,99);
-       System.out.println("*****************************");
-       System.out.println("Solutions for " + noOfQueens + " queens:");
+       Arrays.fill(queens, 99);
+       if(showSolutions) {
+           System.out.println("*****************************************************");
 
-       positionQueens(0);
+           long duration = System.currentTimeMillis();
+           positionQueens(0);
+           duration = System.currentTimeMillis() - 10;
 
-       System.out.println();
-       System.out.println();
-       duration = System.currentTimeMillis();
-       System.out.println("Were found in " + System.currentTimeMillis() + "ms");
-       System.out.println("no of Solutions " + noOfSolutions);
+           System.out.println();
+           System.out.format("Queens       Solutions      Time(ms)    Solutions/ms%n" +
+                           "   %3d    %,12d    %,8d          %,8d %n", noOfQueens, noOfSolutions,
+                   duration, noOfSolutions/duration);
+           System.out.println("******************************************************");
+
+       }else {
+
+           System.out.println("*****************************");
+           System.out.println("Solutions for " + noOfQueens + " queens:");
+
+           positionQueens(0);
+
+           System.out.println();
+           System.out.println();
+
+           System.out.println("Were found in " + System.currentTimeMillis() + "ms");
+           System.out.println("no of Solutions " + noOfSolutions);
 
 
-       System.out.println("*****************************");
-       /*System.out.format("   %3d  %,12d     %,8d     %,8d %n", noOfQueens, noOfSolutions,
-               duration, noOfSolutions/duration);*/
+           System.out.println("*****************************");
+       }
 
    }
 
@@ -62,6 +66,9 @@ public class Solver
         }
     }
 
+    public void setShowSolutions(boolean showSolutions) {
+        this.showSolutions = showSolutions;
+    }
 
     private void positionQueens(int row) {
 
@@ -94,22 +101,32 @@ public class Solver
 
     public static void main(String[] args) {
         Solver s1 = new Solver();
-       // s1.findAllSolutions(6);
-        s1.findNoOfSolutions(5,9);
+        s1.setShowSolutions(false);
+        s1.findAllSolutions(6);
+
+
+        s1.findNoOfSolutions(4,6);
     }
 
 
 
     private void printSolution() {
+        if(showSolutions){
 
-        System.out.println();
-        for(int i = 0; i< queens.length; i++){
-            System.out.print(convert(i, queens[i]) + " ");
 
+
+        }
+        else {
+            System.out.println();
+            for (int i = 0; i < queens.length; i++) {
+                System.out.print(convert(i, queens[i]) + " ");
+
+            }
         }
     }
 
     public void findNoOfSolutions(int min, int max) {
+        showSolutions = true;
         for (int i = min; i <= max; i++) {
             noOfSolutions = 0;
             findAllSolutions(i);
