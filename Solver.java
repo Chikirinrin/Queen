@@ -27,6 +27,7 @@ public class Solver
        {
            System.out.println("*****************************************************");
            System.out.println("Solutions for " + noOfQueens + " queens:");
+           noOfSolutions = 0;
            long duration = System.currentTimeMillis();
            positionQueens(0);
            duration = System.currentTimeMillis()+1 - duration;
