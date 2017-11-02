@@ -24,7 +24,7 @@ public class Solver
        this.noOfQueens = noOfQueens;
        this.queens = new int[noOfQueens];
        Arrays.fill(queens, 99);
-       {
+
            System.out.println("*****************************************************");
            System.out.println("Solutions for " + noOfQueens + " queens:");
            noOfSolutions = 0;
@@ -36,7 +36,7 @@ public class Solver
 
            System.out.println("A total of " + noOfSolutions + " solutions were found in " + duration + " ms");
            System.out.println("*****************************************************");
-       }
+
 
    }
 
