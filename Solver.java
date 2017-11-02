@@ -20,11 +20,12 @@ public class Solver
 
 
    public void findAllSolutions(int noOfQueens){
+       showSolutions = true;
        this.noOfQueens = noOfQueens;
        this.queens = new int[noOfQueens];
        Arrays.fill(queens, 99);
        {
-           System.out.println("*****************************");
+           System.out.println("*****************************************************");
            System.out.println("Solutions for " + noOfQueens + " queens:");
            long duration = System.currentTimeMillis();
            positionQueens(0);
@@ -32,11 +33,8 @@ public class Solver
            System.out.println();
            System.out.println();
 
-           System.out.println("Were found in " + duration + " ms");
-           System.out.println("no of Solutions " + noOfSolutions);
-
-
-           System.out.println("*****************************");
+           System.out.println("A total of " + noOfSolutions + " solutions were found in " + duration + " ms");
+           System.out.println("*****************************************************");
        }
 
    }
@@ -52,8 +50,12 @@ public class Solver
         }
     }
 
-    public void setShowSolutions(boolean showSolutions) {
-        this.showSolutions = showSolutions;
+    public static void testSolver(){
+       Solver s1 = new Solver();
+       s1.findAllSolutions(1);
+       s1.findAllSolutions(2);
+       s1.findAllSolutions(6);
+       s1.findNoOfSolutions(1,12);
     }
 
     private void positionQueens(int row) {
@@ -87,11 +89,7 @@ public class Solver
 
     public static void main(String[] args) {
         Solver s1 = new Solver();
-       s1.setShowSolutions(true);
-        //s1.findAllSolutions(6);
-
-
-       s1.findNoOfSolutions(5,12);
+        s1.testSolver();
     }
 
 
@@ -108,8 +106,6 @@ public class Solver
 
     public void findNoOfSolutions(int min, int max) {
         showSolutions = false;
-
-
         System.out.println("*****************************************************");
         System.out.println("Queens       Solutions      Time(ms)    Solutions/ms");
         for (int i = min; i <=max; i++) {
